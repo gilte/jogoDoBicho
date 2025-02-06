@@ -17,6 +17,7 @@
             <button id="consultarBtn">Consultar</button>
             <button id="limparBtn">Limpar</button>
             <p id="resultado"></p>
+            <p id="comentario"></p> <!-- Novo parágrafo para o comentário -->
         </section>
         <section class="resultados">
             <h2>Resultados</h2>
@@ -75,6 +76,39 @@
             }
         }
 
+        // Função para gerar um comentário sobre o bicho
+        function gerarComentario(bicho) {
+            const comentarios = {
+                "Avestruz": "O Avestruz é um animal que simboliza a perseverança. Sua capacidade de correr rápido reflete a força para alcançar objetivos.",
+                "Águia": "A Águia é um símbolo de liberdade e visão aguçada. Um bicho que enxerga além dos limites.",
+                "Burro": "O Burro representa a humildade e resistência. Mesmo sem ser admirado, ele é fundamental para o trabalho árduo.",
+                "Borboleta": "A Borboleta é um símbolo de transformação e beleza. Seu voo leve e colorido inspira todos ao seu redor.",
+                "Cachorro": "O Cachorro é um símbolo de lealdade e amizade. Sempre ao lado de seu dono, um fiel companheiro.",
+                "Cabra": "A Cabra é um animal de coragem, sempre pronta para escalar qualquer obstáculo. Ela representa determinação.",
+                "Carneiro": "O Carneiro é símbolo de liderança e coragem. Sempre pronto para enfrentar desafios de cabeça erguida.",
+                "Camelo": "O Camelo é um sobrevivente do deserto, representando resistência e paciência em tempos difíceis.",
+                "Cobra": "A Cobra é uma criatura misteriosa, representando a renovação e sabedoria através da mudança constante.",
+                "Coelho": "O Coelho é conhecido pela sua agilidade e precaução. Ele representa a cautela e a rapidez para escapar de perigos.",
+                "Cavalo": "O Cavalo é símbolo de força e liberdade. Sempre à frente, ele busca novos horizontes.",
+                "Elefante": "O Elefante é símbolo de memória e sabedoria, sendo um animal respeitado por sua grandeza.",
+                "Galo": "O Galo é um símbolo de coragem e aviso. Sempre acordando os outros para novos começos.",
+                "Gato": "O Gato é um animal independente e misterioso, conhecido por sua agilidade e inteligência.",
+                "Jacaré": "O Jacaré representa força e paciência. Ele sabe a hora certa de atacar, com grande precisão.",
+                "Leão": "O Leão é o rei da selva, um símbolo de poder, coragem e liderança.",
+                "Macaco": "O Macaco é curioso e criativo, sempre explorando o mundo ao seu redor com inteligência e astúcia.",
+                "Porco": "O Porco é símbolo de prosperidade e sorte, muitas vezes visto como um portador de abundância.",
+                "Pavão": "O Pavão é conhecido pela sua beleza e vaidade. Seu olhar magnético encanta todos que o observam.",
+                "Peru": "O Peru representa a abundância, sendo um símbolo de generosidade e celebração.",
+                "Touro": "O Touro é símbolo de força e perseverança, sempre fiel ao seu caminho.",
+                "Tigre": "O Tigre é um predador astuto, representando força, poder e ferocidade.",
+                "Urso": "O Urso é símbolo de introspecção e força interior. Ele é solitário, mas altamente respeitado.",
+                "Veado": "O Veado representa a graciosidade e a suavidade, movendo-se com elegância e leveza.",
+                "Vaca": "A Vaca é símbolo de abundância e fertilidade, sempre nutrindo aqueles ao seu redor."
+            };
+
+            return comentarios[bicho] || "Comentário não disponível para esse bicho.";
+        }
+
         // Função para processar a consulta
         document.getElementById('consultarBtn').addEventListener('click', function() {
             const milharesInput = document.getElementById('milhares').value.trim();
@@ -82,6 +116,7 @@
             const resultados = document.getElementById('tabelaResultados').getElementsByTagName('tbody')[0];
             resultados.innerHTML = ''; // Limpa resultados anteriores
             let invalidMilharFound = false;
+            let textoComentario = '';
 
             milhares.forEach(milhar => {
                 if (/^\d{4}$/.test(milhar)) { // Verifica se a milhar tem 4 dígitos
@@ -91,6 +126,8 @@
                         row.insertCell(0).textContent = milhar;
                         row.insertCell(1).textContent = resultadoBicho.nome;
                         row.insertCell(2).textContent = resultadoBicho.grupo;
+                        
+                        textoComentario += gerarComentario(resultadoBicho.nome) + "<br><br>";
                     } else {
                         invalidMilharFound = true;
                     }
@@ -101,8 +138,10 @@
 
             if (invalidMilharFound) {
                 document.getElementById('resultado').textContent = 'Algumas milhares são inválidas ou não foram encontradas.';
+                document.getElementById('comentario').innerHTML = ''; // Limpa o comentário em caso de erro
             } else {
                 document.getElementById('resultado').textContent = 'Consulta realizada com sucesso!';
+                document.getElementById('comentario').innerHTML = textoComentario; // Exibe o comentário gerado
             }
         });
 
@@ -111,6 +150,7 @@
             document.getElementById('milhares').value = '';
             document.getElementById('tabelaResultados').getElementsByTagName('tbody')[0].innerHTML = ''; // Limpa resultados
             document.getElementById('resultado').textContent = '';
+            document.getElementById('comentario').innerHTML = ''; // Limpa o comentário
         });
     </script>
 </body>
