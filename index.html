@@ -34,6 +34,84 @@
             </table>
         </section>
     </main>
-    <script src="script.js"></script>
+    <script>
+        const bichos = {
+            1: "Avestruz",
+            2: "Águia",
+            3: "Burro",
+            4: "Borboleta",
+            5: "Cachorro",
+            6: "Cabra",
+            7: "Carneiro",
+            8: "Camelo",
+            9: "Cobra",
+            10: "Coelho",
+            11: "Cavalo",
+            12: "Elefante",
+            13: "Galo",
+            14: "Gato",
+            15: "Jacaré",
+            16: "Leão",
+            17: "Macaco",
+            18: "Porco",
+            19: "Pavão",
+            20: "Peru",
+            21: "Touro",
+            22: "Tigre",
+            23: "Urso",
+            24: "Veado",
+            25: "Vaca"
+        };
+
+        // Função para buscar o bicho correspondente a uma milhar
+        function buscarBicho(milhar) {
+            let dezena = parseInt(milhar.slice(-2)); // Pega os dois últimos dígitos
+            let grupo = Math.ceil(dezena / 4); // Define o grupo do bicho
+            
+            if (bichos[grupo]) {
+                return { nome: bichos[grupo], grupo: grupo };
+            } else {
+                return null;
+            }
+        }
+
+        // Função para processar a consulta
+        document.getElementById('consultarBtn').addEventListener('click', function() {
+            const milharesInput = document.getElementById('milhares').value.trim();
+            const milhares = milharesInput.split(/[\s,]+/); // Split por espaço ou vírgula
+            const resultados = document.getElementById('tabelaResultados').getElementsByTagName('tbody')[0];
+            resultados.innerHTML = ''; // Limpa resultados anteriores
+            let invalidMilharFound = false;
+
+            milhares.forEach(milhar => {
+                if (/^\d{4}$/.test(milhar)) { // Verifica se a milhar tem 4 dígitos
+                    const resultadoBicho = buscarBicho(milhar);
+                    if (resultadoBicho) {
+                        const row = resultados.insertRow();
+                        row.insertCell(0).textContent = milhar;
+                        row.insertCell(1).textContent = resultadoBicho.nome;
+                        row.insertCell(2).textContent = resultadoBicho.grupo;
+                    } else {
+                        invalidMilharFound = true;
+                    }
+                } else {
+                    invalidMilharFound = true;
+                }
+            });
+
+            if (invalidMilharFound) {
+                document.getElementById('resultado').textContent = 'Algumas milhares são inválidas ou não foram encontradas.';
+            } else {
+                document.getElementById('resultado').textContent = 'Consulta realizada com sucesso!';
+            }
+        });
+
+        // Função para limpar os campos
+        document.getElementById('limparBtn').addEventListener('click', function() {
+            document.getElementById('milhares').value = '';
+            document.getElementById('tabelaResultados').getElementsByTagName('tbody')[0].innerHTML = ''; // Limpa resultados
+            document.getElementById('resultado').textContent = '';
+        });
+    </script>
 </body>
 </html>
