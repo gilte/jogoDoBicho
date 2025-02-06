@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.consulta {
+    margin-bottom: 20px;
+}
+
+#milhares {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#tabelaResultados {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#tabelaResultados th, #tabelaResultados td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 768px) {
+    #milhares {
+        width: 100%;
+    }
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

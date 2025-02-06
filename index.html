@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Jogo do Bicho</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Consulta Jogo do Bicho</h1>
+    </header>
+    <main>
+        <section class="consulta">
+            <label for="milhares">Digite uma ou mais milhares (4 dígitos, separadas por vírgula ou espaço):</label>
+            <input type="text" id="milhares" placeholder="Ex: 1234, 5678, 9012">
+            <button id="consultarBtn">Consultar</button>
+            <button id="limparBtn">Limpar</button>
+            <p id="resultado"></p>
+        </section>
+        <section class="resultados">
+            <h2>Resultados</h2>
+            <table id="tabelaResultados">
+                <thead>
+                    <tr>
+                        <th>Milhar</th>
+                        <th>Bicho</th>
+                        <th>Grupo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Resultados serão inseridos aqui -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
